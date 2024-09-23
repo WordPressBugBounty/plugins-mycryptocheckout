@@ -1,0 +1,3 @@
+Please complete your order by
+sending <strong>[AMOUNT] [CURRENCY]</strong>
+to <strong>[TO]</strong>

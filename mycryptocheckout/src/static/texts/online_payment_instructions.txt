@@ -1,0 +1,8 @@
+<div class="mcc online_payment_instructions">
+
+<h2>To complete your order</h2>
+
+Send <span class="amount"><span class="to_input">[AMOUNT] [CURRENCY]</span></span>
+To <span class="to"><span class="to_input">[TO]</span></span>
+
+</div>

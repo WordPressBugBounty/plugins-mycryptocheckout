@@ -1,0 +1,47 @@
+2.15		20231113
+
+Add filters and actions to allow the WooCommerce code to fetch the order data from the external table instead of the postmeta table.
+
+2.14		20230324
+
+In Wordpress get_client_url() function, allow MYCRYPTOCHECKOUT_CLIENT_URL define.
+
+2.13		20211021
+
+Compress the account data to prevent the mysql server from not accepting the large data.
+
+2.12		20210725
+
+Allow Wordpress API to filter the account data.
+
+2.11		20210724
+
+Fix Wordpress API incorrectly converting to array.
+
+2.09		20210723
+
+Fix Wordpress API to allow for serializing in WP 5.8
+
+2.08		20210215
+
+Use MCC API Exception instead of basic Exception.
+
+2.06		20191119
+
+Add test communication function.
+
+2.05		20190613
+
+Return JSON error info.
+
+2.04		20190411
+
+Added preliminary Autosettlement code.
+
+2.03		20181214
+
+mycryptocheckout\api\v2\wordpress	Allow waves data to be passed through.
+
+2.02		20181117
+
+Added MYCRYPTOCHECKOUT_PRICING_URL define, in order to override the license purchase URL by referrers.
