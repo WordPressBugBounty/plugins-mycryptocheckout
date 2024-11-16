@@ -4,11 +4,11 @@ Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 4.9
 Requires PHP: 5.6
-Stable tag: 2.137
+Stable tag: 2.138
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
-Tested up to: 6.5.5
+Tested up to: 6.7
 
-Cryptocurrency payment gateway for WooCommerce and Easy Digital Downloads. Accept 100+ coins: Bitcoin, Ethereum, BNB, Solana. Peer-to-peer transactions.
+Cryptocurrency payment gateway for WooCommerce and Easy Digital Downloads. Accept 100+ coins: Bitcoin, Ethereum, BNB, Solana. Peer2Peer transactions.
 
 == Description ==
 
@@ -264,6 +264,11 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.138 20241116 =
+
+* Fix: SOL - getRecentBlockhash replaced with getLatestBlockhash.
+* Update: SOL - Add versioning to web3 js.
 
 = 2.137 20240722 =
 
