@@ -4,7 +4,7 @@ Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 4.9
 Requires PHP: 5.6
-Stable tag: 2.141
+Stable tag: 2.142
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
 Tested up to: 6.7
 
@@ -19,8 +19,8 @@ https://www.youtube.com/watch?v=nUoJ9ziaAJQ
 = Key Features & Highlights =
 
 - 0% transaction fees
-- No KYC or product restrictions
 - Peer-to-peer transactions
+- No KYC or product restrictions
 - No redirection to 3rd parties or iframes
 - Use any crypto wallet you want
 - Automagically detect unique payments using one wallet address
@@ -50,7 +50,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Digibyte DGB (Including SegWit)
 - Dogecoin DOGE
 - Ethereum ETH (Including MetaMask, ENS addresses)
-- Fantom FTM
 - Groestlcoin GRS (Including SegWit, ZPUB HD wallets)
 - Litecoin LTC (Including SegWit, HD wallets)
 - MAZA
@@ -145,10 +144,12 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 
 = SPL tokens (Including Phantom) =
 
+- BONK
 - Brett Gold BRETTGOLD
 - dogwifhat WIF
 - HOLD EARN
 - Jupiter JUP
+- OFFICIAL TRUMP
 - PayPal USD PYUSD
 - Popcat POPCAT
 - Sallar ALL
@@ -261,6 +262,14 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.142 20250403 =
+
+* New currency: BONK
+* New currency: Pudgy Penguins PENGU
+* New currency: OFFICIAL TRUMP
+
+= 2.141 20241227 =
 
 * New currency: MIRX
 
