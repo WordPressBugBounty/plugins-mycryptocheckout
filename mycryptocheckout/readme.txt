@@ -4,7 +4,7 @@ Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 4.9
 Requires PHP: 5.6
-Stable tag: 2.142
+Stable tag: 2.143
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
 Tested up to: 6.7
 
@@ -60,7 +60,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Stellar XLM
 - Tron TRX
 - XRP
-- Zcash ZEC (T-address recipients only)
 - We can now add your <a href="https://mycryptocheckout.com/add-cryptocurrency/">cryptocurrency</a>!
 
 = BASE tokens supported (Including MetaMask): =
@@ -82,6 +81,7 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - PancakeSwap Token CAKE
 - Swipe SXP
 - TasteNFT TASTE
+- Unity UNT
 - VAI Stablecoin VAI
 - Venus XVS
 - Value Flow VFLOW
@@ -97,7 +97,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Aragon ANT
 - Bancor BNT
 - Basic Attention Token BAT
-- Bobby BOBBY
 - Chainlink LINK
 - Compound COMP
 - Efinity Token EFI
@@ -109,6 +108,7 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Dogecoin DOGE
 - Dragonchain DRGN
 - Enjin Coin ENJ
+- EURC
 - FUNToken FUN
 - Gemini Dollar GUSD
 - Immutable IMX
@@ -262,6 +262,11 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.143 20250512 =
+
+* New currency: EURC
+* New currency: Unity UNT
 
 = 2.142 20250403 =
 
