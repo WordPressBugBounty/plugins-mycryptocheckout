@@ -2,6 +2,10 @@
 
 namespace mycryptocheckout\ecommerce\woocommerce;
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 use Exception;
 
 /**
@@ -76,7 +80,7 @@ class WooCommerce
 		// And now redirect the buyer to the correct page.
 		$url = $order->get_checkout_order_received_url();
 
-		wp_redirect( $url );
+		wp_safe_redirect( $url );
 		exit;
 	}
 
@@ -94,7 +98,11 @@ class WooCommerce
 		$wc_decimals = get_option( 'woocommerce_price_num_decimals' );
 		if ( $wc_decimals == $currency->decimal_precision )
 			return;
-		throw new Exception( sprintf( "Since you are using virtual currency %s as your WooCommerce currency, please change the decimal precision from %s to match MyCyyptoCheckout's: %s", $wc_currency, $wc_decimals, $currency->decimal_precision ) );
+		$r = sprintf(
+			// Translators: 1 is the shop currency symbol, 2 is a number of decimals, 3 is the currency's decimal preicison.
+			__( "Since you are using virtual currency %1\$s as your WooCommerce currency, please change the decimal precision from %2\$d to match MyCyyptoCheckout's: %3\$s", 'mycryptocheckout' ),
+			$wc_currency, $wc_decimals, $currency->decimal_precision );
+		throw new Exception( esc_html( $message ) );
 	}
 
 	/**
@@ -114,7 +122,14 @@ class WooCommerce
 		$wallet = MyCryptoCheckout()->wallets()->get_dustiest_wallet( $wc_currency );
 		if ( ! $wallet )
 			if ( ! $account->get_physical_exchange_rate( $wc_currency ) )
-				throw new Exception( sprintf( 'Your WooCommerce installation is using an unknown currency: %s', $wc_currency ) );
+			{
+				$message = sprintf(
+					// Translators: %s is BTC or ETC or other currency.
+					__( 'Your WooCommerce installation is using an unknown currency: %s', 'mycryptocheckout' ),
+					$wc_currency,
+				);
+				throw new Exception( esc_html( $message ) );
+			}
 
 		return true;
 	}
@@ -265,8 +280,10 @@ class WooCommerce
 	**/
 	public function template_redirect()
 	{
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- External redirect from Waves gateway; no WP nonce available.
 		if ( ! isset( $_GET[ 'txId' ] ) )	// This is what waves adds.
 			return;
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Validated by context (checking URL params count).
 		if ( count( $_GET ) !== 1 )			// The waves payment API strips out every parameter.
 			return;
 		if ( ! is_order_received_page() )	// It at least returns the buyer to the order received page.
@@ -289,7 +306,7 @@ class WooCommerce
 		// And now redirect the buyer to the correct page.
 		$url = $order->get_checkout_order_received_url();
 
-		wp_redirect( $url );
+		wp_safe_redirect( $url );
 		exit;
 	}
 
@@ -335,7 +352,7 @@ class WooCommerce
 
 		$r = '';
 		$r .= sprintf( '<h3>%s</h3>',
-			__( 'MyCryptoCheckout details', 'woocommerce' )
+			__( 'MyCryptoCheckout details', 'mycryptocheckout' )
 		);
 
 		$attempts = $order->get_meta( '_mcc_attempts' );
@@ -346,7 +363,7 @@ class WooCommerce
 			if ( $payment_id == 1 )
 				$payment_id = __( 'Test', 'mycryptocheckout' );
 			$r .= sprintf( '<p class="form-field form-field-wide">%s</p>',
-				// Expecting 123 BTC to xyzabc
+				// Translators: payment ID: NUMBER
 				sprintf( __( 'MyCryptoCheckout payment ID: %s', 'mycryptocheckout'),
 					$payment_id
 				)
@@ -356,6 +373,7 @@ class WooCommerce
 		{
 			if ( $attempts > 0 )
 				$r .= sprintf( '<p class="form-field form-field-wide">%s</p>',
+					// Translators: NUMBER attempts made
 					sprintf( __( '%d attempts made to contact the API server.', 'mycryptocheckout'),
 						$attempts
 					)
@@ -364,26 +382,26 @@ class WooCommerce
 
 		if ( $order->is_paid() )
 			$r .= sprintf( '<p class="form-field form-field-wide">%s</p>',
-				// Received 123 BTC to xyzabc
-				sprintf( __( 'Received %s&nbsp;%s<br/>to %s', 'mycryptocheckout'),
-					$amount,
-					$order->get_meta( '_mcc_currency_id' ),
-					$order->get_meta( '_mcc_to' )
+				// Translators: Received 123 BTC to ADDRESS
+				sprintf( __( 'Received %1$s&nbsp;%2$s<br/>to %3$s', 'mycryptocheckout'),
+					esc_html( $amount ),
+					esc_html( $order->get_meta( '_mcc_currency_id' ) ),
+					esc_html( $order->get_meta( '_mcc_to' ) )
 				)
 			);
 		else
 		{
 			$r .= sprintf( '<p class="form-field form-field-wide">%s</p>',
-				// Expecting 123 BTC to xyzabc
-				sprintf( __( 'Expecting %s&nbsp;%s<br/>to %s', 'mycryptocheckout'),
-					$amount,
-					$order->get_meta( '_mcc_currency_id' ),
-					$order->get_meta( '_mcc_to' )
+				// Translators: Expecting 123 BTC to ADDRESS
+				sprintf( __( 'Expecting %1$s&nbsp;%2$s<br/>to %3$s', 'mycryptocheckout'),
+					esc_html( $amount ),
+					esc_html( $order->get_meta( '_mcc_currency_id' ) ),
+					esc_html( $order->get_meta( '_mcc_to' ) )
 				)
 			);
 		}
 
-		echo $r;
+		echo $r;	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- needs to output real html
 	}
 
 	/**
@@ -435,7 +453,8 @@ class WooCommerce
 		$payment_id = $order->get_meta( '_mcc_payment_id' );
 		if ( $payment_id < 2 )		// 1 is for test mode.
 			return;
-		MyCryptoCheckout()->debug( 'Completing payment %d for order %s', $payment_id, $order_id );
+		// Translators: payment NUMBER for order NUMBER
+		MyCryptoCheckout()->debug( 'Completing payment %1$d for order %2$d', $payment_id, $order_id );
 		MyCryptoCheckout()->api()->payments()->complete( $payment_id );
 	}
 
@@ -448,12 +467,17 @@ class WooCommerce
 		if ( $order->get_payment_method() != static::$gateway_id )
 			return;
 
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies checkout nonce.
+		if ( ! isset( $_POST[ 'mcc_currency_id' ] ) )
+			wp_die( 'MCC currency ID does not exist in POST.' );
+
 		$account = MyCryptoCheckout()->api()->account();
 		$available_for_payment = $account->is_available_for_payment();
 
 		MyCryptoCheckout()->debug( 'Creating order! Available: %d', $available_for_payment );
 
-		$currency_id = sanitize_text_field( $_POST[ 'mcc_currency_id' ] );
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- WooCommerce verifies checkout nonce.
+		$currency_id = sanitize_text_field( wp_unslash( $_POST['mcc_currency_id'] ) );
 
 		// Get the gateway instance.
 		$gateway = \WC_Gateway_MyCryptoCheckout::instance();
@@ -534,7 +558,6 @@ class WooCommerce
 		$payment->timeout_hours = intval( $gateway->get_option( 'payment_timeout_hours' ) );
 
 		$wallet->apply_to_payment( $payment );
-		MyCryptoCheckout()->autosettlements()->apply_to_payment( $payment );
 
 		MyCryptoCheckout()->debug( 'Payment as created: %s', $payment );
 
@@ -637,7 +660,8 @@ class WooCommerce
 		}
 		catch ( Exception $e )
 		{
-			echo MyCryptoCheckout()->error_message_box()->text( $e->getMessage() );
+			$r = MyCryptoCheckout()->error_message_box()->text( $e->getMessage() );
+			echo wp_kses_post( $r );
 		}
 	}
 
