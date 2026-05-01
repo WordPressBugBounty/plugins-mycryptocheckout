@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d426aff0e1cd8b37ea8b044140059792",
+    "content-hash": "260d6a81b1be87abc2354b2309f62b16",
     "packages": [
         {
             "name": "bitwasp/bitcoin",
@@ -487,16 +487,16 @@
         },
         {
             "name": "mycryptocheckout/api",
-            "version": "2.23",
+            "version": "2.24",
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/mycryptocheckout/api.git",
-                "reference": "f48c0bce73466b3169a46c4a5c5f2cc98c62fc6c"
+                "reference": "9ae14741596958d7447d79ca677f72ddb5dfec43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/mycryptocheckout/api/get/f48c0bce73466b3169a46c4a5c5f2cc98c62fc6c.zip",
-                "reference": "f48c0bce73466b3169a46c4a5c5f2cc98c62fc6c",
+                "url": "https://bitbucket.org/mycryptocheckout/api/get/9ae14741596958d7447d79ca677f72ddb5dfec43.zip",
+                "reference": "9ae14741596958d7447d79ca677f72ddb5dfec43",
                 "shasum": ""
             },
             "type": "library",
@@ -516,9 +516,9 @@
             ],
             "support": {
                 "issues": "https://bitbucket.org/mycryptocheckout/api/issues",
-                "source": "https://bitbucket.org/mycryptocheckout/api/src/f48c0bce73466b3169a46c4a5c5f2cc98c62fc6c/?at=2.23"
+                "source": "https://bitbucket.org/mycryptocheckout/api/src/9ae14741596958d7447d79ca677f72ddb5dfec43/?at=2.24"
             },
-            "time": "2026-01-03T10:15:20+00:00"
+            "time": "2026-04-15T06:22:49+00:00"
         },
         {
             "name": "paragonie/random_compat",

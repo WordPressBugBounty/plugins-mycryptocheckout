@@ -4,7 +4,7 @@ Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 6.2
 Requires PHP: 8.0
-Stable tag: 2.161
+Stable tag: 2.162
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
 Tested up to: 6.9
 
@@ -263,6 +263,11 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.162 20260501 =
+
+* Fix: Add better display of "payments left" in account table.
+* Fix: Remove old Waves code.
 
 = 2.161 20260118 =
 
