@@ -1,10 +1,10 @@
  === MyCryptoCheckout - Bitcoin, Ethereum, and 100+ altcoins for WooCommerce ===
-Contributors: edward_plainview
+Contributors: edward_plainview, uniquelylost
 Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 6.2
 Requires PHP: 8.0
-Stable tag: 2.163
+Stable tag: 2.164
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
 Tested up to: 6.9
 
@@ -44,21 +44,12 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Base Chain BASE (Including Metamask)
 - Binance Coin BNB
 - Bitcoin BTC (Including SegWit, HD wallets)
-- Bitcoin Cash BCH (Including HD wallets)
-- Dash DASH (Including HD wallets)
-- Digibyte DGB (Including SegWit)
-- Dogecoin DOGE
 - Ethereum ETH (Including MetaMask, ENS addresses)
-- Groestlcoin GRS (Including SegWit, ZPUB HD wallets)
-- Litecoin LTC (Including SegWit, HD wallets)
-- MAZA
 - Monero XMR
 - Polygon MATIC
 - Solana SOL (Including Phantom)
-- Stellar XLM
 - Tron TRX
 - XRP
-- We can now add your <a href="https://mycryptocheckout.com/add-cryptocurrency/">cryptocurrency</a>!
 
 = BASE tokens supported (Including MetaMask): =
 
@@ -66,7 +57,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - HOLD EARN
 - USD Coin USDC
 - Wrapped Ether WETH
-- Add your <a href="https://mycryptocheckout.com/base-token/">custom Base tokens</a>!
 
 = BEP-20 tokens supported (Including MetaMask): =
 
@@ -84,7 +74,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Venus XVS
 - Value Flow VFLOW
 - xxxNifty NSFW
-- Add your <a href="https://mycryptocheckout.com/bep20-token/">custom Binance BEP-20 tokens</a>!
 
 = ERC-20 tokens supported (Including MetaMask, ENS addresses): =
 
@@ -138,18 +127,14 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Veritaseum VERI
 - Wrapped Bitcoin WBTC
 - ZRX 0x Protocol
-- Add your <a href="https://mycryptocheckout.com/custom-token/">custom Ethereum ERC-20 tokens</a>!
 
 = TRC-20 tokens supported: =
 
 - Tether USDT
 
-- Add your <a href="https://mycryptocheckout.com/trc20-token/">custom TRC-20 tokens</a>!
-
 = Polygon MATIC tokens supported: =
 
 - Pleasure Coin NSFW
-- Add your <a href="https://mycryptocheckout.com/polygon-matic-token/">custom Polygon MATIC tokens</a>!
 
 = Cryptocurrency Donations Widget =
 
@@ -263,6 +248,17 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.164 20260515 =
+
+* Updated to newer API version. The API will not talk to plugin versions earlier than 2.164
+* Removed Dash DASH
+* Removed Digibyte DGB
+* Removed DOGE
+* Removed Stellar XLM
+* Removed the "Open in wallet" link during checkout.
+
+After upgrading, check your currencies to see that they are correct.
 
 = 2.163 20260502 =
 

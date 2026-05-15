@@ -167,6 +167,17 @@ abstract class API
 	}
 
 	/**
+		@brief		Test basic communication with the client in realtime.
+		@since		2019-11-15 23:04:31
+	**/
+	public function get_test_communication_parameters()
+	{
+		return [
+			'plugin_version' => 1.0,
+		];
+	}
+
+	/**
 		@brief		Echo a json object.
 		@since		2018-10-13 18:35:54
 	**/
@@ -411,6 +422,8 @@ abstract class API
 	**/
 	public function test_communication()
 	{
-		return $this->send_post_with_account( 'test_communication', [] );
+		return $this->send_post_with_account( 'test_communication', [
+			'plugin_version' => MYCRYPTOCHECKOUT_PLUGIN_VERSION,
+		] );
 	}
 }
