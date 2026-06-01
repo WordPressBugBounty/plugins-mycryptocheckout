@@ -31,7 +31,8 @@
 				{
 					var $item = $(item);
 					var $h3 = $( 'h3.title', $item );
-					var $a = $( '<a href="#">' ).html( $h3.html() );
+					var h3_slug = $h3.text().replace( /[^0-9a-zA-Z]/g, '_' ).toLowerCase();
+					var $a = $( '<a class="' + h3_slug + '" href="#' + h3_slug + '">' ).html( $h3.html() );
 					$h3.remove();
 					var $li = $( '<li>' );
 					$a.appendTo( $li );
@@ -48,11 +49,29 @@
 						$(this).addClass( 'current' );
 						$fieldsets.hide();
 						$item.show();
+
+						// Also add the hash to the forma action.
+						var $form = $subsubsub.closest( 'form' );
+						var form_action = $form.prop( 'action' );
+						// Remove the hash.
+						form_action = form_action.replace( /#.*/, '' );
+						$form.prop( 'action', form_action + '#' + h3_slug );
 					} );
 
 				} );
 
-				$( 'li a', $subsubsub ).first().click();
+				// Check if there is a # in the location
+				if ( document.location.hash.length > 1 )
+				{
+					// Select it
+					var tab_hash = document.location.hash.replace( '#', '' );
+					$( 'li a.' + tab_hash , $subsubsub ).click();
+				}
+				else
+				{
+					// Select the first tab
+					$( 'li a', $subsubsub ).first().click();
+				}
             } ); // return this.each( function()
         } // plugin: function()
     } ); // $.fn.extend({

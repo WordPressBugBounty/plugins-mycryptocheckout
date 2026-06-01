@@ -4,7 +4,7 @@ Donate link: https://mycryptocheckout.com
 License: GPLv3
 Requires at least: 6.2
 Requires PHP: 8.0
-Stable tag: 2.166
+Stable tag: 2.167
 Tags: bitcoin, ethereum, payments, woocommerce, bitcoin woocommerce
 Tested up to: 7.0
 
@@ -44,10 +44,13 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Base Chain BASE (Including Metamask)
 - Binance Coin BNB
 - Bitcoin BTC (Including SegWit, HD wallets)
+- Doge
 - Ethereum ETH (Including MetaMask, ENS addresses)
+- Litecoin LTC
 - Monero XMR
 - Polygon MATIC
 - Solana SOL (Including Phantom)
+- Stellar XLM
 - Tron TRX
 - XRP
 
@@ -64,11 +67,9 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Binance-Peg BUSD
 - Binance-Peg BUSD-T
 - Binance-Peg USD Coin
-- BITTOKEN BITT
 - HOLD EARN
 - PancakeSwap Token CAKE
 - Swipe SXP
-- TasteNFT TASTE
 - Unity UNT
 - VAI Stablecoin VAI
 - Venus XVS
@@ -122,7 +123,6 @@ The free license can process 5 sales per month. A <a href="https://mycryptocheck
 - Tether USDT
 - TrueUSD TUSD
 - Uniswap UNI
-- UNUS SED LEO
 - USD Coin USDC
 - Veritaseum VERI
 - Wrapped Bitcoin WBTC
@@ -248,6 +248,11 @@ The following plugins prevent MyCryptoCheckout from working correctly:
 - <a href="https://wordpress.org/plugins/really-simple-ssl/">Really Simple SSL</a> causes payments to be canceled as soon as they are paid.
 
 == Changelog ==
+
+= 2.167 20260601 =
+
+* New: Modernized payment page: Enable at Settings > MyCryptoCheckout > Global settings > Checkout display.
+* Stellar XLM has been restored
 
 = 2.166 20260517 =
 
