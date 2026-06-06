@@ -141,6 +141,18 @@ abstract class Account
 	}
 
 	/**
+		@brief		Return an array of all of Unmatched_Payment objects.
+		@since		2026-06-03 17:17:59
+	**/
+	public function get_unmatched_payments()
+	{
+		$r = [];
+		foreach( $this->data->unmatched_payments as $raw_unmatched_payment )
+			$r []= new Unmatched_Payment( $raw_unmatched_payment );
+		return $r;
+	}
+
+	/**
 		@brief		Convenience method to return a virtual exchange rate.
 		@since		2017-12-14 17:11:13
 	**/
@@ -168,6 +180,17 @@ abstract class Account
 	public function has_license()
 	{
 		return $this->data->license_valid;
+	}
+
+	/**
+		@brief		Does this account have any unmatched payments?
+		@since		2026-06-04 20:58:35
+	**/
+	public function has_unmatched_payments()
+	{
+		if ( ! $this->is_valid() )
+			return false;
+		return count( $this->data->unmatched_payments ) > 0;
 	}
 
 	/**

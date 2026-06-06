@@ -1115,6 +1115,47 @@ trait admin_trait
 	}
 
 	/**
+		@brief		Show the unmatched payments.
+		@since		2026-06-04 20:59:57
+	**/
+	public function admin_unmatched_payments()
+	{
+		$account = $this->api()->account();
+		$table = $this->table();
+		$table->caption()->text( __( 'Unmatched payments to your addresses', 'mycryptocheckout' ) );
+
+		$row = $table->head()->row();
+		// Table column name
+		$row->th( 'address' )->text( __( 'Address', 'mycryptocheckout' ) );
+		// Table column name
+		$row->th( 'amount' )->text( __( 'Amount', 'mycryptocheckout' ) );
+		// Table column name
+		$row->th( 'transaction_id' )->text( __( 'Transaction ID', 'mycryptocheckout' ) );
+		// Table column name
+		$row->th( 'since' )->text( __( 'Since', 'mycryptocheckout' ) );
+
+		$unmatched_payments = $account->get_unmatched_payments();
+
+		// Show newest up top.
+		$unmatched_payments = array_reverse( $unmatched_payments );
+
+		foreach( $unmatched_payments as $unmatched_payment )
+		{
+			$row = $table->body()->row();
+			$row->td( 'address' )->text( wp_kses_post( floatval( $unmatched_payment->amount ) . ' ' . $unmatched_payment->currency_id ) );
+			$row->td( 'amount' )->text( wp_kses_post( $unmatched_payment->to ) );
+			$row->td( 'transaction_id' )->text( wp_kses_post( $unmatched_payment->transaction_id ) );
+			$row->td( 'since' )->text( static::wordpress_ago( strtotime( $unmatched_payment->created_at ) ) );
+		}
+
+		echo wpautop( __( 'Unmatched payments are detected blockchain transactions to your wallet addresses that could not be automatically matched to an MCC order. Review the currency, amount, receiving address, and transaction ID, then verify the transaction on-chain before deciding whether it belongs to a customer order.', 'mycryptocheckout' ) );
+
+		echo wpautop( __( 'Unmatched payments disappear automatically from the table after 7 days.', 'mycryptocheckout' ) );
+
+		echo $table;
+	}
+
+	/**
 		@brief		Deactivation.
 		@since		2017-12-14 08:36:14
 	**/
